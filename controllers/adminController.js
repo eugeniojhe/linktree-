@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { findOne } = require('../Models/Page');
 const Page = require('../Models/Page');
 const User = require('../Models/User'); 
+const Link = require('../Models/link'); 
 
 exports.login = async (req,res) =>{
     res.render('admin/login');
@@ -45,7 +46,22 @@ exports.logout = async (req, res) => {
  }
 
  exports.pageLinks = async (req, res) => {
-     res.send('inside pageLinks'); 
+    let params = {
+        page: '',
+        links: '', 
+        isLink:true,  
+    }
+    
+    const page = await Page.findOne({slug:req.params.slug, user_id:req.user._id});
+     
+    if (page){
+        params.page = page; 
+        params.links = await Link.find({page_id:page.id}); 
+        res.render('admin/page_links',{ params })
+    } else {
+        res.redirect('/admin'); 
+    }
+    
  }
 
 

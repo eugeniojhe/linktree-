@@ -52,8 +52,12 @@ passport.deserializeUser(User.deserializeUser());
 app.use('/',router); 
 
 
-app.engine('html',mustache(__dirname+'/views/partials','.html'));
+/* app.engine('html',mustache(__dirname+'/views/partials','.html'));
 app.set('view engine','html'); 
+app.set('views',__dirname+'/views');  */
+
+app.engine('mst',mustache(__dirname+'/views/partials','.mst'));
+app.set('view engine','mst'); 
 app.set('views',__dirname+'/views'); 
 
 module.exports = app; 
