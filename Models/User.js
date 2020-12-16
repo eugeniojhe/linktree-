@@ -4,7 +4,7 @@ mongoose.Promise  = global.Promise;
 
 
 const userSchema = new mongoose.Schema({
-    name:{
+    username:{
         type:String,        
         },
     email:{

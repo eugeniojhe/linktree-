@@ -42,5 +42,8 @@ const pageSchema = new mongoose.Schema({
     timestamps:true
 });
 
+pageSchema.statics.findPages = function(filters = {}) {
+    return this.find(filters).populate('5fd8ec52bd6a4666b0a2bc2f'); 
+}
 
 module.exports = mongoose.model('Page', pageSchema);

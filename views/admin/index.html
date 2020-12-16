@@ -1,36 +1,34 @@
-{{ > header }}
+      {{ > header}}
 
-
-   <section>
-
-      <header>
-       <h2>Suas Páginas</h2>
-        
-       </header>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Titúlo</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-                    {{ #pages }}
-                        <tr>
-                            <td>{{ page.op_title }} ({{ page.slug }})</td>
-                            <td>
-                                <a href="{{'/'+$page->slug }}" target="_blank">[Abrir]</a>
-                                <a href="{{ '/admin/'+page->slug+'/links'}}">[Links]</a>
-                                <a href="{{'/admin/'+page->slug+'/design'}}">[Aparência]</a>
-                                <a href="{{ /admin/'+page->slug.+'/stats'}}">[Estátitisca]</a>
-                            </td>
-                        </tr>
-                    {{ /pages}} 
-            
-            </tbody>
-        </table>
-</section>
+      <section class="container">
+        <header>
+            <h2>Suas Páginas</h2>        
+          </header>
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titúlo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                             {{ #pages}}
+                             <tr>
+                                <td>{{ op_title }} ({{ slug }})</td>
+                                <td>
+                                    <a href="/{{slug}}" target="_blank">[Abrir]</a>
+                                    <a href="/admin/{{slug}}/links">[Links]</a>
+                                    <a href="/admin/{{slug}}/design">[Aparência]</a>
+                                    <a href="/admin/{{slug}}/stats">[Estátitisca]</a>
+                                </td>
+                            </tr>
+                            {{ /pages }}                         
+                </tbody>
+            </table>
+        </body>
+        </html>
+      </section>      
+    
 
 

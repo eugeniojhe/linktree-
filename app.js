@@ -7,6 +7,7 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy; 
 
 
+
 const router = require('./routes/index'); 
 
 
@@ -38,18 +39,20 @@ app.use(passport.initialize());
 app.use(passport.session()); 
 
 app.use((req,res,next) => {
-    res.locals.flashes = req.flash(); 
+    res.locals.flashes = req.flash();
+    res.locals.user = req.user;  
     next(); 
 });
 
 const User = require('./Models/User'); 
-passport.use(new localStrategy(User.authenticate())); 
+passport.use(new localStrategy(User.authenticate(), {usernameField: 'email',
+passwordField: 'password'})); 
 passport.serializeUser(User.serializeUser()); 
 passport.deserializeUser(User.deserializeUser()); 
 app.use('/',router); 
 
 
-app.engine('html',mustache(__dirname+'/views/partials','html'));
+app.engine('html',mustache(__dirname+'/views/partials','.html'));
 app.set('view engine','html'); 
 app.set('views',__dirname+'/views'); 
 

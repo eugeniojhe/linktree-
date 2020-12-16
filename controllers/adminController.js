@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const { findOne } = require('../Models/Page');
+const Page = require('../Models/Page');
 const User = require('../Models/User'); 
 
 exports.login = async (req,res) =>{
@@ -14,13 +16,13 @@ exports.loginAction = async (req, res) => {
             return; 
         }
         req.login(result, () => {});
-        req.flash('success','Login efetuado com sucesoo');
         res.redirect('/admin')
     });
 }
 
 exports.logout = async (req, res) => {
-    res.send('Inside logOut'); 
+    req.logout(); 
+    res.redirect('/');     
  }
 
 
@@ -30,7 +32,7 @@ exports.logout = async (req, res) => {
 
  exports.registerAction = async (req, res) => {
      const newUser = new User(req.body); 
-     console.log(req.body.name); 
+     console.log(req.body.username); 
      User.register(newUser,req.body.password,(error) => {
         if(error){
            req.flash('error','Falha no registro de usuário '+error.message);  
@@ -56,5 +58,7 @@ exports.logout = async (req, res) => {
  }
 
  exports.index = async (req, res) => {
-     res.send('admin/index'); 
+    const pages =  await Page.find({user_id:req.user._id});
+    res.render('admin/index', { pages }); 
+   
  }

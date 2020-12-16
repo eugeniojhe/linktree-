@@ -2,11 +2,12 @@ const express = require('express');
 require('express-group-routes'); 
 
 const adminController = require('../controllers/adminController');
-const pageController = require('../controllers/homeController'); 
+const pageController = require('../controllers/pageController'); 
 const homeController = require('../controllers/homeController'); 
 
-const router = express.Router(); 
+const authMiddleware = require('../middlewares/authMiddleware'); 
 
+const router = express.Router(); 
 
 /* app.route('/book')
   .get(function(req, res) {
@@ -21,7 +22,7 @@ const router = express.Router();
 
 
 router.get('/',homeController.index);
-
+router.get('/pagina/new',pageController.addAction);
 router.group('/admin',(router) =>{
      
       router.get('/login',adminController.login);
@@ -32,6 +33,7 @@ router.group('/admin',(router) =>{
       router.get('/:slug/links',adminController.pageLinks); 
       router.get('/:slug/design',adminController.pageDesign); 
       router.get('/:slug/stats',adminController.pageStats); 
-      router.get('/',adminController.index)
+      router.get('/',authMiddleware.isLogged,adminController.index)
 })
+router.get('/:slug',authMiddleware.isLogged, pageController.index); 
 module.exports = router 
