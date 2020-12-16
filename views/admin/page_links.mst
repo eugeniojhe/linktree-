@@ -1,0 +1,64 @@
+{{ > header }}
+
+
+    <div class="preheader">
+        {{#params}}
+        {{ page.slug }}
+        {{ isLink }}
+        {{/params}}
+      
+    </div>
+     
+    <div class="area">
+       
+        <div class="leftside">
+            <header>
+                <ul>
+                <li> {{#isLink}} class="active" {{/isLink}}<a href="/admin/{{slug}}/links">Links</a></li>
+                <li> {{#isDesign}} class="active" {{/isDesign}}><a href="/admin/{{slug}}/design">Aparência</a></li>
+                <li> {{#isStat}} class="active" {{/isStat}}<a href="/admin/{{slug}}/stats">Estatística</a></li>
+                </ul>
+            </header>
+           <a class="bigbutton" href="/admin/'{{ slug }}/newlink')">Novo</a> 
+
+    <ul id="links">
+        {{#links}}
+            <li class="link--item" data-id="{{ id }}">
+                <div class="link--item-sort">
+                    <img src="{{ '/assets/images/sort.png' }}"alt="ordenar" width="18">
+                </div>
+                <div class="link--item-info">
+                    <div class="link--item-title">{{ title }}</div>
+                    <div classs="link--item-href"> {{ href }} </div>
+                </div>
+                <div class="link--item-buttons">
+                    <a href="/admin/{{slug}}/editlink/{{ id }}">Editar</a>
+                    <a href="/admin/{{slug}}/dellink/{{ id }}">Excluir</a>  
+                </div>
+            </li>
+          
+       {{/links}}
+    </ul>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
+            <script>
+                 new Sortable(document.querySelector("#links"), {
+                    onEnd: async (e) => {
+                        let id = e.item.getAttribute('data-id');
+                        let link = `/admin/linkorder/${id}/${e.newIndex}`; 
+                        await fetch(link);
+                        window.location.href = window.location.href; 
+                    }, 
+                 });
+            </script> 
+
+        </div>
+
+        <div class="rightsid">
+        <iframe frameborder="0" src="/{{ params.page.slug }}"></iframe>
+
+        </div>
+    </div>
+
+
+
+

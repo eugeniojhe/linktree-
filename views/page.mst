@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{page.op_title}}</title>
+
+    <style type="text/css">
+        body {
+            display:flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin:0;
+            padding:20px; 
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(90deg,#9448BC,#480355);
+            color:{{ page.op_font_color }};
+                      
+        }
+
+        .profileImage img {
+            width:auto; 
+            height: 100px; 
+        }
+
+        .profileTitle {
+            font-size: 17px; 
+            font-weight: bold;
+            margin-top: 10px; 
+        }
+
+        .profileDescription {
+            font-size: 15px; 
+            margin-top: 5px; 
+        }
+
+        .linkArea {
+            width: 100%;
+            margin:50 0; 
+        }
+
+        .linkArea a{
+            display:block; 
+            padding:20px; 
+            text-align: center; 
+            text-decoration: none; 
+            font-size: 18px; 
+            font-weight: bold; 
+            margin-bottom: 20px; 
+        }
+
+        .linkArea a.linksquare {
+            border-radius: 0; 
+        }
+
+        .linkArea a.linkrounded {
+            border-radius: 50px; 
+        }
+
+        .banner a {
+           color: {{page.op_font_color }};
+        }
+
+    </style>
+    </head>
+
+    <body>
+        
+        <div class="profileImage">
+            <img src="{{ page.op_profile_image }}"> 
+        </div>
+
+        <div class="profileTitle">{{ page.op_title }}</div>
+
+        <div class="profileDescription"> {{ page.op_description }}</div>
+
+        <div class="linkArea">
+            {{ #links }}
+            )
+                <a 
+        href="{{ href }}" 
+                 class="link{{ page.op_border_type }}"
+        style="background-color:{{page.op_bg_value}};color:{{ page.op_text_color }}"
+        target="_blank">
+                 {{page.op_title}} </a>
+        {{/links}}
+
+        </div>
+
+        <div class="banner">
+            Feito ♥ por Eugenio   <a href="#">{{ page.title }}</a>
+        </div>
+        {{#fb_pixel}}
+            <div >
+
+            </div>
+        {{/fb_pixel}} 
+
+
+
+    </body>
+</html>

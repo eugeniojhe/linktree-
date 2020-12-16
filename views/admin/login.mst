@@ -1,0 +1,35 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LinkTree Login</title>
+    <link rel="stylesheet"  href="/assets/css/admin.login.css" >
+</head>
+<body>
+    <div class="loginArea">
+        {{#flashes}}
+            {{#success}}
+                <div class="success">{{ . }}</div>
+            {{/success}}
+
+            {{#info}}
+                <div class="info">{{ . }}</div>
+            {{/info}}
+            
+            {{#error}}
+                <div class="error">{{ . }}</div>
+            {{/error}}
+
+        {{/flashes}}
+
+        <h1>Login</h1>
+       
+        <form method="POST">
+              <input type="email" name="email" placeholder="Enter com seu e-mail">
+            <input type="password" name="password" placeholder="Enter com sua senha"> 
+            <input type="submit" value="Entrar">
+        Não cadastrado ? <a href="/admin/register">Registrar</a>
+        </form>
+    </div>
+</body>
+</html>
