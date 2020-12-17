@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{ #pageTitle}}
-    <title>{{ h.defaultPageTitle}}</title>
-    {{/pageTitle}}
-    <link rel="stylesheet"  href="/assets/css/admin.template.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {{ #pageTitle}}
+        <title>{{ h.defaultPageTitle}}</title>
+        {{/pageTitle}}
+        <link rel="stylesheet"  href="/assets/css/admin.template.css">
+    </head>
 <body>
 
     {{#flashes}}
@@ -40,4 +40,18 @@
              </a>
         </div>
     </nav>  
+    <section class="container">
+            {{#params.containerIndex}}
+                {{ > index }}
+            {{/params.containerIndex}}
+
+            {{#params.containerPage}}
+                {{ > page }}
+            {{/params.containerPage}}
+           
+    </section> 
+</body>
+</html>
+
+
     

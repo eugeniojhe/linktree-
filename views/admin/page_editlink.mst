@@ -1,0 +1,62 @@
+@extends('admin.page')
+
+@section('body')
+
+<h3>{{isset($link) ? 'Ediçao' : 'Novo'}}</h3>
+
+        @if (isset($error))
+            <div class="error">{{ $error }}</div>
+        @endif
+ 
+        @if($errors->any())
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error}}</li> 
+                @endforeach
+            </ul>
+        @endif
+
+        <form method="POST">
+            @csrf
+
+            <label>
+                Status:<br>
+                <select name="status">
+                <option {{ isset($link) ? ($link->id == '1') ? 'selected' : '' : ''}} value= "1">Ativo</option>
+                <option {{ isset($link) ? ($link->id == '2') ? 'selected' : '' : ''}} value="2">Inativo</option>
+                </select>
+            </label>
+                Titúlo:<br>
+        <input type="text" name="title" placeholder="titulo do link" value="{{isset($link) ? ($link->title) ? $link->title : '' : ''}}">
+            </label>
+
+            <label>
+                Url:<br>
+            <input type="url" name="href" placeholder="Url do link" value="{{ isset($link) ? $link->href : '' }}"> 
+            </label>
+
+            <label>
+                Cor Fundo:<br>
+            <input type="color" name="op_bg_color" value="{{ isset($link) ? $link->op_bg_color  : '#FFFFFF'}}">
+            </label>
+
+            <label>
+                Cor Texto:<br>
+                <input type="color" name="op_text_color" value="{{ isset($link) ? $link->op_text_color : '#000000'}}">
+            </label>
+
+            <label>
+                Tipo Borda:<br>
+                <select name="op_border_type">
+                    <option {{ isset($link) ? ($link->op_boder_type == "rounded") ? 'selected' : '' : '' }} value="rounded">Arredondada</option>
+                    <option {{ isset($link) ? ($link->op_border_typ == "square")  ? 'selected' : '' : '' }} value="square">Quadrada</option> 
+                </select>
+            </label>
+
+            
+            <label>
+                <input type="submit" value="Salvar"> 
+            </label>
+
+        </form>
+@endsection

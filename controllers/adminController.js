@@ -49,15 +49,18 @@ exports.logout = async (req, res) => {
     let params = {
         page: '',
         links: '', 
-        isLink:true,  
+        isLink:true,
+        containerPage:true,
+        bodyPageLinks:true,    
     }
     
-    const page = await Page.findOne({slug:req.params.slug, user_id:req.user._id});
+    const page = await Page.findOne({slug:req.params.slug, user_id:'5fd8ec52bd6a4666b0a2bc2f'});
      
     if (page){
         params.page = page; 
         params.links = await Link.find({page_id:page.id}); 
-        res.render('admin/page_links',{ params })
+       //    res.render('admin/page_links',{ params })
+        res.render('admin/header',{params})
     } else {
         res.redirect('/admin'); 
     }
@@ -74,7 +77,25 @@ exports.logout = async (req, res) => {
  }
 
  exports.index = async (req, res) => {
-    const pages =  await Page.find({user_id:req.user._id});
-    res.render('admin/index', { pages }); 
-   
+    let params = {
+        pages: '',
+        links: '', 
+        isLink:true,
+        containerIndex:true   
+    } 
+    const pages =  await Page.find({user_id:'5fd8ec52bd6a4666b0a2bc2f'});
+    params.pages = pages; 
+    res.render('admin/header', { params });   
+ }
+
+ exports.newLink = async (req, res) => {
+    const page = await Page.find({slug:req.params.slug, user_id:'5fd8ec52bd6a4666b0a2bc2f'}); 
+    if (page){
+        res.render('')
+    }
+    return redirect('/admin'); 
+ }
+
+ exports.newLinkAction = async (req, res) => {
+
  }

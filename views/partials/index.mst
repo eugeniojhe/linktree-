@@ -1,0 +1,29 @@
+         <header>
+            <h2>Suas Páginas</h2>        
+          </header>
+    
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titúlo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                            {{#params.pages}}
+                              <tr>
+                                    <td>{{ op_title }} ({{ slug }})</td>
+                                    <td>
+                                        <a href="/{{slug}}" target="_blank">[Abrir]</a>
+                                        <a href="/admin/{{slug}}/links">[Links]</a>
+                                        <a href="/admin/{{slug}}/design">[Aparência]</a>
+                                        <a href="/admin/{{slug}}/stats">[Estátitisca]</a>
+                                    </td>
+                               </tr>
+                            {{/params.pages}}                       
+                </tbody>
+            </table>        
+         
+    
+
+

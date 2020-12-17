@@ -2,11 +2,10 @@ const mongoose = require('mongoose');
 const Page = require('../Models/Page'); 
 
 exports.index = async (req, res) => {
-    const page = await Page.findOne({slug:req.params.slug, user_id:req.user._id});
+    const page = await Page.findOne({slug:req.params.slug, user_id:'5fd8ec52bd6a4666b0a2bc2f'});
     
     if (page){
-        
-        res.render('page',{ page });
+         res.render('page',{ page });
     } else {
         res.redirect('/admin');
     }

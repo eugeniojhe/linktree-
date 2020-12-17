@@ -67,7 +67,7 @@
     <body>
         
         <div class="profileImage">
-            <img src="{{ page.op_profile_image }}"> 
+            <img src="/media/uploads/{{ page.op_profile_image }}"> 
         </div>
 
         <div class="profileTitle">{{ page.op_title }}</div>
@@ -95,8 +95,6 @@
 
             </div>
         {{/fb_pixel}} 
-
-
 
     </body>
 </html>

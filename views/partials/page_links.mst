@@ -1,26 +1,5 @@
-{{ > header }}
 
-
-    <div class="preheader">
-        {{#params}}
-        {{ page.slug }}
-        {{ isLink }}
-        {{/params}}
-      
-    </div>
-     
-    <div class="area">
-       
-        <div class="leftside">
-            <header>
-                <ul>
-                <li> {{#isLink}} class="active" {{/isLink}}<a href="/admin/{{slug}}/links">Links</a></li>
-                <li> {{#isDesign}} class="active" {{/isDesign}}><a href="/admin/{{slug}}/design">Aparência</a></li>
-                <li> {{#isStat}} class="active" {{/isStat}}<a href="/admin/{{slug}}/stats">Estatística</a></li>
-                </ul>
-            </header>
-           <a class="bigbutton" href="/admin/'{{ slug }}/newlink')">Novo</a> 
-
+   <a class="bigbutton" href="/admin/'{{ slug }}/newlink')">Novo</a> 
     <ul id="links">
         {{#links}}
             <li class="link--item" data-id="{{ id }}">
@@ -50,14 +29,7 @@
                     }, 
                  });
             </script> 
-
-        </div>
-
-        <div class="rightsid">
-        <iframe frameborder="0" src="/{{ params.page.slug }}"></iframe>
-
-        </div>
-    </div>
+        
 
 
 

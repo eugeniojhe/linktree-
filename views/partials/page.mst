@@ -1,0 +1,27 @@
+    {{! Thas is a content }}
+    <div class="preheader">
+      123
+      
+    </div>
+     
+    <div class="area">
+       
+        <div class="leftside">
+            <header>
+                {{#params.page}}
+                <ul>
+                <li> {{#isLink}} class="active" {{/isLink}}<a href="/admin/{{slug}}/links">Links</a></li>
+                <li> {{#isDesign}} class="active" {{/isDesign}}<a href="/admin/{{slug}}/design">Aparência</a></li>
+                <li> {{#isStat}} class="active" {{/isStat}}<a href="/admin/{{slug}}/stats">Estatística</a></li>
+                </ul>
+                {{/params.page}}
+            </header>
+           {{#params.bodyPageLinks}}
+                {{ > page_links }}
+           {{/params.bodyPageLinks}}
+        </div> 
+         <div class="rightside">
+            <iframe frameborder="0" src="/{{ params.page.slug }}"></iframe>
+         </div>
+    </div>
+

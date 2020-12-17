@@ -30,10 +30,12 @@ router.group('/admin',(router) =>{
       router.get('/logout',adminController.logout); 
       router.get('/register',adminController.register);
       router.post('/register',adminController.registerAction); 
-      router.get('/:slug/links',authMiddleware.isLogged,adminController.pageLinks); 
+      router.get('/:slug/links',/*authMiddleware.isLogged,*/adminController.pageLinks); 
       router.get('/:slug/design',adminController.pageDesign); 
       router.get('/:slug/stats',adminController.pageStats); 
-      router.get('/',authMiddleware.isLogged,adminController.index)
+      router.get('/:slug/newlink',adminController.newLink); 
+      router.get('/:slug/newlink',adminController.newLinkAction); 
+      router.get('/',/*authMiddleware.isLogged,*/adminController.index)
 })
-router.get('/:slug',authMiddleware.isLogged, pageController.index); 
+router.get('/:slug',/*authMiddleware.isLogged, */pageController.index); 
 module.exports = router 
