@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-const { findOne } = require('../Models/Page');
+const { findOne, replaceOne } = require('../Models/Page');
 const Page = require('../Models/Page');
 const User = require('../Models/User'); 
 const Link = require('../Models/link'); 
+const Click = require('../Models/Click');
 
 exports.login = async (req,res) =>{
     res.render('admin/login');
@@ -51,7 +52,7 @@ exports.logout = async (req, res) => {
         links: '', 
         isLink:true,
         containerPage:true,
-        bodyPageLinks:true,    
+        bodyPageLinks:true, 
     }
     
     const page = await Page.findOne({slug:req.params.slug, user_id:'5fd8ec52bd6a4666b0a2bc2f'});
@@ -81,7 +82,7 @@ exports.logout = async (req, res) => {
         pages: '',
         links: '', 
         isLink:true,
-        containerIndex:true   
+        containerIndex:true,         
     } 
     const pages =  await Page.find({user_id:'5fd8ec52bd6a4666b0a2bc2f'});
     params.pages = pages; 
@@ -89,13 +90,41 @@ exports.logout = async (req, res) => {
  }
 
  exports.newLink = async (req, res) => {
+    let params = {
+        page: '',
+        link: false, 
+        isLink:true,
+        containerPage:true,
+        bodyPageEditLink:true,           
+    }
     const page = await Page.find({slug:req.params.slug, user_id:'5fd8ec52bd6a4666b0a2bc2f'}); 
     if (page){
-        res.render('')
+        params.page = page; 
+        res.render('admin/header',{ params });
+        return; 
     }
-    return redirect('/admin'); 
+    res.redirect('/admin'); 
  }
 
  exports.newLinkAction = async (req, res) => {
+     const page = await Page.findOne({slug:req.params.slug,user_id:'5fd8ec52bd6a4666b0a2bc2f'});
+     if (page) {
+           //Realizar as validações 
+             let lastOrder =  await Link.countDocuments({slug:req.params.slug,user_id:'5fd8ec52bd6a4666b0a2bc2f'});
+             req.body.order = lastOrder;
+             req.body.page_id = page._id;
+             const link = new Link(req.body); 
+             try {
+                link.save(); 
+             }catch(error) {
+                req.flash('error','Falha ao insirir link '+error.message);
+                res.redirect('/admin/'+req.params.slug+'/newlink') ;
+                return; 
+             }
+
+           return res.redirect('/admin');  
+     } else {
+         return res.redirect('/admin'); 
+     }
 
  }

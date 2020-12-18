@@ -1,0 +1,29 @@
+<script id="template" type="text/html">
+    {{#ensc-department}} 
+        {{#bahreini}}
+            {{#profilePage}}
+                {{#program}}
+                <li><a href="/graduate/profiles/{{profilePage}}.html">{{name}}</a> - {{position}}, {{program}} Program</li>
+                {{/program}}
+                {{^program}}
+                    <li><a href="/graduate/profiles/{{profilePage}}.html">{{name}}</a> - {{position}}</li>
+                {{/program}}
+            {{/profilePage}}
+            {{^profilePage}}
+                {{#program}}
+                    <li>{{name}} - {{position}}, {{program}} Program</li>
+                {{/program}}
+                {{^program}}
+                    <li>{{name}} - {{position}}</li>
+                {{/program}}
+            {{/profilePage}}
+        {{/bahreini}} 
+    {{/ensc-department}} 
+</script>
+
+<ul id="ensc-list" class="tight">
+</ul>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.2/mustache.js"></script>
+<script type="text/javascript" src ="mustache.js"></script>

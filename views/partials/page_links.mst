@@ -1,5 +1,6 @@
-
-   <a class="bigbutton" href="/admin/'{{ slug }}/newlink')">Novo</a> 
+ 
+{{#params.page}}
+   <a class="bigbutton" href="/admin/{{ slug }}/newlink">Novo</a> 
     <ul id="links">
         {{#links}}
             <li class="link--item" data-id="{{ id }}">
@@ -28,7 +29,8 @@
                         window.location.href = window.location.href; 
                     }, 
                  });
-            </script> 
+    </script> 
+{{/params.page}}
         
 
 

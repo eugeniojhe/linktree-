@@ -1,8 +1,10 @@
 const mongoose = require('mongoose'); 
+const slug = require('slug');
+const Page  = require('./Page');
 mongoose.Promise  = global.Promise;
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
-const pageSchema = new mongoose.Schema({
+const linkSchema = new mongoose.Schema({
     status:Number, 
     order:Number, 
     title:{
@@ -22,5 +24,9 @@ const pageSchema = new mongoose.Schema({
     timestamps:true
 });
 
-module.exports = mongoose.model('Link', pageSchema);
+linkSchema.statics.countLinks = function (slug,userId) {
+    //return this.aggregate.count({slug:slug,user_id:userId});
+}
+
+module.exports = mongoose.model('Link', linkSchema);
 

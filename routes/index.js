@@ -34,7 +34,7 @@ router.group('/admin',(router) =>{
       router.get('/:slug/design',adminController.pageDesign); 
       router.get('/:slug/stats',adminController.pageStats); 
       router.get('/:slug/newlink',adminController.newLink); 
-      router.get('/:slug/newlink',adminController.newLinkAction); 
+      router.post('/:slug/newlink',adminController.newLinkAction); 
       router.get('/',/*authMiddleware.isLogged,*/adminController.index)
 })
 router.get('/:slug',/*authMiddleware.isLogged, */pageController.index); 

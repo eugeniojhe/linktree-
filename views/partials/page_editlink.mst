@@ -1,0 +1,50 @@
+
+{{#params.link}}
+    <h3>Edição</h3> 
+{{/params.link}}
+{{^params.link}}
+    <h3>Novo</h3> 
+{{/params.link}}
+
+<form method="POST">
+    <label>
+        Status:<br>
+        <select name="status">
+        <option  value= "1">Ativo</option>
+        <option  value="2">Inativo</option>
+        </select>
+    </label>
+        Titúlo:<br>
+    <input type="text" name="title" placeholder="titulo do link" value="">
+    </label>
+
+    <label>
+        Url:<br>
+    <input type="url" name="href" placeholder="Url do link" value=""> 
+    </label>
+
+    <label>
+        Cor Fundo:<br>
+    <input type="color" name="op_bg_color" value="">
+    </label>
+
+    <label>
+        Cor Texto:<br>
+        <input type="color" name="op_text_color" value="#000000">
+    </label>
+
+    <label>
+        Tipo Borda:<br>
+        <select id="op_boder_type" name="op_border_type">
+            <option  value="rounded">Arredondada</option>
+            <option  value="square">Quadrada</option> 
+        </select>
+    </label>
+
+
+    <label>
+        <input type="submit" value="Salvar"> 
+    </label>
+</form>
+
+<script src="assets/js/helperMustache.js"></script>

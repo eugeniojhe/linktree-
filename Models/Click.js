@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise  = global.Promise;
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
-const pageSchema = new mongoose.Schema({
+const clickSchema = new mongoose.Schema({
     link_id:{
         type:ObjectId, 
         ref:'Link', 
@@ -17,5 +17,5 @@ const pageSchema = new mongoose.Schema({
     timestamps:true
 });
 
-module.exports = mongoose.model('Click', pageSchema);
+module.exports = mongoose.model('Click', clickSchema);
 
