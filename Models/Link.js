@@ -5,8 +5,12 @@ mongoose.Promise  = global.Promise;
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
 const linkSchema = new mongoose.Schema({
-    status:Number, 
+    status:{
+           type:Number, 
+           default:0 
+    },
     order:Number, 
+         
     title:{
         type:String, 
         trim:true 

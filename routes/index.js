@@ -6,6 +6,7 @@ const pageController = require('../controllers/pageController');
 const homeController = require('../controllers/homeController'); 
 
 const authMiddleware = require('../middlewares/authMiddleware'); 
+const adminValidator = require('../validators/adminValidator'); 
 
 const router = express.Router(); 
 
@@ -34,7 +35,7 @@ router.group('/admin',(router) =>{
       router.get('/:slug/design',adminController.pageDesign); 
       router.get('/:slug/stats',adminController.pageStats); 
       router.get('/:slug/newlink',adminController.newLink); 
-      router.post('/:slug/newlink',adminController.newLinkAction); 
+      router.post('/:slug/newlink',adminValidator.newLinkAction,adminController.newLinkAction); 
       router.get('/',/*authMiddleware.isLogged,*/adminController.index)
 })
 router.get('/:slug',/*authMiddleware.isLogged, */pageController.index); 

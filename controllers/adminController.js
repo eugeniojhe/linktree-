@@ -5,6 +5,8 @@ const User = require('../Models/User');
 const Link = require('../Models/link'); 
 const Click = require('../Models/Click');
 
+const { validationResult, matchedData } = require('express-validator'); 
+
 exports.login = async (req,res) =>{
     res.render('admin/login');
 }
@@ -107,6 +109,13 @@ exports.logout = async (req, res) => {
  }
 
  exports.newLinkAction = async (req, res) => {
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        req.flash('error','Existem dados invalido '+errors.mapped());
+        return res.redirect('/admin/'+req.params.slug+'/newLink'); 
+    }
+
      const page = await Page.findOne({slug:req.params.slug,user_id:'5fd8ec52bd6a4666b0a2bc2f'});
      if (page) {
            //Realizar as validações 
@@ -120,11 +129,9 @@ exports.logout = async (req, res) => {
                 req.flash('error','Falha ao insirir link '+error.message);
                 res.redirect('/admin/'+req.params.slug+'/newlink') ;
                 return; 
-             }
-
-           return res.redirect('/admin');  
-     } else {
-         return res.redirect('/admin'); 
-     }
+             }           
+     } 
+     return res.redirect('/admin'); 
+     
 
  }
