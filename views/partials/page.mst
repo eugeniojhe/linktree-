@@ -1,11 +1,27 @@
     {{! Thas is a content }}
 
-
-    
+        
         <div class="preheader">
             
         </div>
         
+         {{#flashes}}
+            {{#success}}
+                <li>.</li>
+            {{/success}}
+
+            {{#error}}
+                 <li><span>Olha o erro ai gente</span></li>
+               
+                
+            {{/error}}
+
+            {{#info}}
+                <li>{{.}}</li> 
+            {{/info}}
+
+         {{/flashes}}
+
         <div class="area">
         
             <div class="leftside">

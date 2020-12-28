@@ -112,7 +112,16 @@ exports.logout = async (req, res) => {
 
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        req.flash('error','Existem dados invalido '+errors.mapped());
+      //  console.log(errors.mapped()); 
+     // req.flash('error','Campos Inválidos');
+        let other = errors.mapped(); 
+        let  meuErro = {
+            other  
+        }
+        console.log(meuErro); 
+        req.flash(req.validationErrors(true));
+        req.flash('error',+meuErro); 
+        //req.flash('error',+errors.mapped());
         return res.redirect('/admin/'+req.params.slug+'/newLink'); 
     }
 

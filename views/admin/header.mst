@@ -10,23 +10,7 @@
         <link rel="stylesheet"  href="/assets/css/admin.template.css">
     </head>
 <body>
-
-    {{#flashes}}
-            <div class="warning"> 
-                {{#success}}
-                    <div>{{.}}</div>
-                {{/success}}
-
-                {{#error}}
-                    <div>{{.}}</div>
-                {{/error}}
-
-                {{#info}}
-                    <div>{{.}}</div> 
-                {{/info}}
-            </div> 
-    {{/flashes}}
-
+    
     <nav>
         <div  class="nav--top">
             <a href="/admin">
