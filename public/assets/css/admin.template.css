@@ -194,6 +194,15 @@ h3 {
     text-align: center;    
 }
 
+
+.warning {
+    border:2px solid #FFA500;
+    background-color:#FFA500;
+    color:#FFF;
+    padding:10px 20px;
+    border-radius:5px;
+}
+
 .error {
     background-color: #D66363;
     color:#fff; 

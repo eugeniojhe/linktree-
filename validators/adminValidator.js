@@ -4,12 +4,10 @@ const { checkSchema } = require('express-validator');
 module.exports = {
     newLinkAction: checkSchema({
         status: {
-            isLength:{
-                options: { min:4}
-             },
+            isBoolean: true, 
             errorMessage:'Status deve ser 0(Zero) ou (1)',  
         },
-        title:{
+         title:{
             isLength:{
                 options: { min:2}
              },
@@ -20,6 +18,7 @@ module.exports = {
                 options: { min:4}
              },
              notEmpty:true, 
+             isURL: true, 
              errorMessage:'Url inválida',
         },
         op_bg_color:{
@@ -28,11 +27,11 @@ module.exports = {
              },
              errorMessage:'Background-color inválida',
         },
-        op_bg_text_color:{
+        op_text_color:{
             isLength:{
                 options: { min:4}
              },
-          errorMessage:'Cor de fundo do texto inválido', 
+          errorMessage:'Cor do texto inválida', 
         },
         op_border_type:{
              isLength:{
@@ -42,7 +41,8 @@ module.exports = {
                           
         },
         page_id:{
-           
+          // isInt:true, //Validando somente campos que estão
+                        //no form 
              
           
         }

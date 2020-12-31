@@ -1,4 +1,5 @@
 const express = require('express'); 
+const mongoose = require('mongoose');  
 const mustache = require('mustache-express'); 
 const cookieParser = require('cookie-parser'); //Needed to wokr with messages flashs 
 const session = require('express-session'); //Needed to work with messages flashs 

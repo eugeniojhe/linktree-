@@ -10,8 +10,8 @@
     <label>
         Status:<br>
         <select name="status">
-        <option  value= "1">Ativo</option>
-        <option  value="2">Inativo</option>
+            <option  value= "1">Ativo</option>
+            <option  value="2">Inativo</option>
         </select>
     </label>
         Titúlo:<br>

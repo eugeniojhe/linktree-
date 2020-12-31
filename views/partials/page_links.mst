@@ -2,10 +2,10 @@
 {{#params.page}}
    <a class="bigbutton" href="/admin/{{ slug }}/newlink">Novo</a> 
     <ul id="links">
-        {{#links}}
+        {{#params.links}}
             <li class="link--item" data-id="{{ id }}">
                 <div class="link--item-sort">
-                    <img src="{{ '/assets/images/sort.png' }}"alt="ordenar" width="18">
+                    <img src="/assets/images/sort.png" alt="ordenar" width="18">
                 </div>
                 <div class="link--item-info">
                     <div class="link--item-title">{{ title }}</div>
@@ -17,7 +17,7 @@
                 </div>
             </li>
           
-       {{/links}}
+       {{/params.links}}
     </ul>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
             <script>

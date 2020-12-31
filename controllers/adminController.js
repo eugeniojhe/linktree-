@@ -62,7 +62,6 @@ exports.logout = async (req, res) => {
     if (page){
         params.page = page; 
         params.links = await Link.find({page_id:page.id}); 
-       //    res.render('admin/page_links',{ params })
         res.render('admin/header',{params})
     } else {
         res.redirect('/admin'); 
@@ -99,6 +98,7 @@ exports.logout = async (req, res) => {
         containerPage:true,
         bodyPageEditLink:true,           
     }
+     
     const page = await Page.find({slug:req.params.slug, user_id:'5fd8ec52bd6a4666b0a2bc2f'}); 
     if (page){
         params.page = page; 
@@ -109,38 +109,33 @@ exports.logout = async (req, res) => {
  }
 
  exports.newLinkAction = async (req, res) => {
-
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-      //  console.log(errors.mapped()); 
-     // req.flash('error','Campos Inválidos');
-        let other = errors.mapped(); 
-        let  meuErro = {
-            other  
-        }
-        console.log(meuErro); 
-        req.flash(req.validationErrors(true));
-        req.flash('error',+meuErro); 
-        //req.flash('error',+errors.mapped());
+         let newLinkError = errors.mapped();
+         if (newLinkError){
+             for(i in newLinkError){
+                req.flash('error',newLinkError[i].msg); 
+             }
+         }          
         return res.redirect('/admin/'+req.params.slug+'/newLink'); 
     }
 
      const page = await Page.findOne({slug:req.params.slug,user_id:'5fd8ec52bd6a4666b0a2bc2f'});
      if (page) {
-           //Realizar as validações 
-             let lastOrder =  await Link.countDocuments({slug:req.params.slug,user_id:'5fd8ec52bd6a4666b0a2bc2f'});
+           
+             let lastOrder =  await Link.countDocuments({page_id:page._id});
              req.body.order = lastOrder;
              req.body.page_id = page._id;
-             const link = new Link(req.body); 
+             const link = new Link(req.body);
              try {
-                link.save(); 
+                await link.save(); 
              }catch(error) {
-                req.flash('error','Falha ao insirir link '+error.message);
+                let string  = 'Falha ao inserir novo link '+error.message; 
+                req.flash('error',string);
                 res.redirect('/admin/'+req.params.slug+'/newlink') ;
                 return; 
              }           
      } 
-     return res.redirect('/admin'); 
-     
+     return res.redirect('/admin');    
 
  }
